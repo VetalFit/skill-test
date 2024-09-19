@@ -53,7 +53,9 @@ export async function POST(req: NextRequest) {
 
 		const employeeDto = { firstName, lastName, companyId, position };
 		const creationResult = await Employee.create(employeeDto);
-		const employee = await Employee.findById(creationResult._id).populate('companyId');
+		const employee = await Employee.findById(creationResult._id).populate(
+			'companyId'
+		);
 		return NextResponse.json(mapEmployee(employee));
 	} catch (e: any) {
 		console.error(e?.message);

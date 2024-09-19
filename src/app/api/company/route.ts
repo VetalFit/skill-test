@@ -24,7 +24,6 @@ export async function GET(req: NextRequest) {
 			['founderId']
 		);
 
-		// const companies = await Company.populate(list, { path: 'founderId' });
 		const companies = list;
 		const companyCount = count;
 		const mappedCompanies = companies.map((company) => mapCompany(company));
@@ -50,8 +49,6 @@ export async function POST(req: NextRequest) {
 				statusText: `Missing field.`,
 			});
 		}
-
-		// const founderId = Company.find().populate('founderId');
 
 		const companyDto = { name, founderId };
 		const company = await Company.create(companyDto);
