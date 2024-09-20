@@ -5,6 +5,7 @@ import CloseButton from '../../components/buttons/closeBtn/CloseButton';
 import Link from 'next/link';
 import DeleteCompanyButton from '../../components/buttons/deleteCompanyBtn/DeleteCompanyButton';
 import DeleteEmployeeButton from '@/app/components/buttons/deleteEmployeeBtn/DeleteEmployeeButton';
+import AddEmployeeButton from '@/app/components/buttons/addEmployee/AddEmployee';
 
 export default async function Page({
 	params,
@@ -20,7 +21,10 @@ export default async function Page({
 			<div className={styles.wrapperTitle}>
 				<div className={styles.companyName}>{company?.name}</div>
 			</div>
-			<div className={styles.deleteCompany}>
+			<div className={styles.buttonsContainer}>
+				<div className={styles.addButton}>
+					<AddEmployeeButton />
+				</div>
 				<DeleteCompanyButton companyId={params.companyId} />
 			</div>
 			{employees && employees.length > 0 ? (

@@ -2,7 +2,10 @@ export type Employee = {
 	id: string;
 	firstName: string;
 	lastName: string;
-	companyId: {};
+	companyId: {
+		name: string;
+		id: string;
+	};
 	position: string;
 };
 

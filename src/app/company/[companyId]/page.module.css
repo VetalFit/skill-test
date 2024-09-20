@@ -33,7 +33,7 @@
 	padding: 10px;
 	width: 400px;
 	display: flex;
-	justify-content: space-between; /* Распределение пространства между элементами */
+	justify-content: space-between;
 	align-items: center;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -48,13 +48,28 @@
 	font-size: 16px;
 }
 
-.deleteCompany {
-	margin: 30px 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 .deleteEmployee {
 	margin-right: 8px;
+}
+
+.buttonsContainer {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.addButton button {
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.addButton button:hover {
+	background-color: #0056b3;
 }

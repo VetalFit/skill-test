@@ -1,8 +1,9 @@
-// import Image from 'next/image';
 import styles from './page.module.css';
 import searchCompanies from './components/fetcher/searchCompanies';
 import CompaniesCards from './components/cardsCompanies/CompaniesCards';
 import Pagination from './components/pagination/Pagination';
+import AddFounderButton from './components/buttons/addFounder/AddFounder';
+import AddCompanyButton from './components/buttons/addCompany/AddCompany';
 
 export default async function Home({
 	searchParams,
@@ -18,38 +19,11 @@ export default async function Home({
 
 	return (
 		<div className={styles.page}>
-			{/* <a
-						className={styles.primary}
-						href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<Image
-							className={styles.logo}
-							src="https://nextjs.org/icons/vercel.svg"
-							alt="Vercel logomark"
-							width={20}
-							height={20}
-						/>
-						Deploy now
-					</a> */}
-			{/* <a
-						href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-						target="_blank"
-						rel="noopener noreferrer"
-						className={styles.secondary}
-					>
-						Read our docs
-					</a> */}
-
-			{/* <div className={styles.searchbarWrapper}>
-						<SearchBar
-							count={count}
-							initialSearch={searchParams.search}
-						/>
-					</div> */}
 			<main className={styles.main}>
 				<div className={styles.title}>Companies</div>
+				<div className={styles.buttonsContainer}>
+					<AddFounderButton /> <AddCompanyButton />
+				</div>
 				<p>Results: {count}</p>
 				<div className={styles.projects}>
 					{list ? (
@@ -67,50 +41,74 @@ export default async function Home({
 					location="company"
 				/>
 			</main>
-			{/* <footer className={styles.footer}>
-				<a
-					href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="https://nextjs.org/icons/file.svg"
-						alt="File icon"
-						width={16}
-						height={16}
-					/>
-					Learn
-				</a>
-				<a
-					href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="https://nextjs.org/icons/window.svg"
-						alt="Window icon"
-						width={16}
-						height={16}
-					/>
-					Examples
-				</a>
-				<a
-					href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<Image
-						aria-hidden
-						src="https://nextjs.org/icons/globe.svg"
-						alt="Globe icon"
-						width={16}
-						height={16}
-					/>
-					Go to nextjs.org →
-				</a>
-			</footer> */}
 		</div>
 	);
 }
+
+
+// 'use client';
+// import React, { useState, useEffect } from 'react';
+// import styles from './page.module.css';
+// import searchCompanies, {
+// 	Companies,
+// } from './components/fetcher/searchCompanies';
+// import CompaniesCards from './components/cardsCompanies/CompaniesCards';
+// import Pagination from './components/pagination/Pagination';
+// import AddFounderButton from './components/buttons/addFounder/AddFounder';
+// import AddCompanyButton from './components/buttons/addCompany/AddCompany';
+
+// export default function Home({
+// 	searchParams,
+// }: {
+// 	searchParams: Record<string, string>;
+// }) {
+// 	const itemsPerPage = 20;
+// 	const currentOffset = parseInt(searchParams.offset || '0', 10);
+// 	const [companies, setCompanies] = useState<Companies>({
+// 		count: 0,
+// 		list: [],
+// 	});
+// 	const totalPages = Math.ceil(companies.count / itemsPerPage);
+
+// 	const fetchCompanies = async () => {
+// 		try {
+// 			const fetchedCompanies = await searchCompanies();
+// 			setCompanies(fetchedCompanies);
+// 			console.log('function');
+// 		} catch (error) {
+// 			console.error('Error fetching companies:', error);
+// 		}
+// 	};
+
+// 	useEffect(() => {
+// 		console.log('Fetching companies...');
+// 		fetchCompanies();
+// 	}, []);
+
+// 	return (
+// 		<div className={styles.page}>
+// 			<main className={styles.main}>
+// 				<div className={styles.title}>Companies</div>
+// 				<div className={styles.buttonsContainer}>
+// 					<AddFounderButton />
+// 					<AddCompanyButton updateCompanyList={fetchCompanies} />
+// 				</div>
+// 				<p>Results: {companies.count}</p>
+// 				<div className={styles.projects}>
+// 					{companies.list.length > 0 ? (
+// 						<CompaniesCards companies={companies.list} />
+// 					) : (
+// 						<p>Nothing found</p>
+// 					)}
+// 				</div>
+
+// 				<Pagination
+// 					totalPages={totalPages}
+// 					itemsPerPage={itemsPerPage}
+// 					currentOffset={currentOffset}
+// 					location="company"
+// 				/>
+// 			</main>
+// 		</div>
+// 	);
+// }

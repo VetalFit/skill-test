@@ -1,0 +1,79 @@
+.submitButton {
+	margin: 0 10px;
+}
+
+.inputWrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.input {
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 5px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.submitButton {
+	margin: 0 10px;
+}
+
+.inputWrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.input {
+	width: 100%;
+	margin-top: 10px;
+	margin-left: 5px;
+	padding: 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.submitButton {
+	background-color: #007bff;
+	color: rgb(51, 51, 51);
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.submitButton:hover {
+	background-color: #0056b3;
+}
+
+.dropdown {
+	position: absolute;
+	background-color: rgb(52, 52, 52);
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	max-height: 200px;
+	overflow-y: auto;
+	z-index: 1000;
+	padding: 0;
+	list-style-type: none;
+	margin-left: 5px;
+}
+
+.dropdownItem {
+	padding: 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #eee;
+}
+
+.dropdownItem:hover {
+	background-color: #1d1d1d;
+}
+
+.dropdownItem:last-child {
+	border-bottom: none;
+}
