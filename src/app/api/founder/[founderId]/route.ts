@@ -1,7 +1,7 @@
-import dbConnect from '@/libs/mongoose';
-import { NextRequest, NextResponse } from 'next/server';
-import Founder from '@/db/models/founder.model';
 import mongoose from 'mongoose';
+import dbConnect from '@/libs/mongoose';
+import Founder from '@/db/models/founder.model';
+import { NextRequest, NextResponse } from 'next/server';
 import { mapFounder } from '../helpers';
 
 export async function GET(

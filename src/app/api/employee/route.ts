@@ -1,7 +1,7 @@
-import { paginatedSearch } from '@/db/models/tools/common';
 import dbConnect from '@/libs/mongoose';
-import { NextRequest, NextResponse } from 'next/server';
 import Employee from '@/db/models/employee.model';
+import { paginatedSearch } from '@/db/models/tools/common';
+import { NextRequest, NextResponse } from 'next/server';
 import { mapEmployee } from './helpers';
 
 export async function GET(req: NextRequest) {

@@ -1,9 +1,9 @@
-import { paginatedSearch } from '@/db/models/tools/common';
-import dbConnect from '@/libs/mongoose';
-import { NextRequest, NextResponse } from 'next/server';
-import Founder from '@/db/models/founder.model';
-import { mapFounder } from './helpers';
 import mongoose from 'mongoose';
+import dbConnect from '@/libs/mongoose';
+import Founder from '@/db/models/founder.model';
+import { paginatedSearch } from '@/db/models/tools/common';
+import { NextRequest, NextResponse } from 'next/server';
+import { mapFounder } from './helpers';
 
 export async function GET(req: NextRequest) {
 	try {

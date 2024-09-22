@@ -1,7 +1,7 @@
-import dbConnect from '@/libs/mongoose';
-import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
+import dbConnect from '@/libs/mongoose';
 import Company from '@/db/models/company.model';
+import { NextRequest, NextResponse } from 'next/server';
 import { mapCompany } from '../helpers';
 import Employee from '@/db/models/employee.model';
 

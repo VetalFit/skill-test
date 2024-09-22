@@ -1,7 +1,7 @@
-import dbConnect from '@/libs/mongoose';
-import { NextRequest, NextResponse } from 'next/server';
 import mongoose from 'mongoose';
+import dbConnect from '@/libs/mongoose';
 import Employee from '@/db/models/employee.model';
+import { NextRequest, NextResponse } from 'next/server';
 import { mapEmployee } from '../helpers';
 
 export async function GET(
