@@ -22,18 +22,23 @@ export default function AddFounderButton() {
 				throw new Error('Failed to add founder');
 			}
 
-			alert('Founder added successfully!');
+			// alert('Founder added successfully!');
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');
 		} catch (error) {
-			alert('Error adding founder');
+			console.error('Error adding founder');
 		}
 	};
 
 	return (
 		<>
-			<button onClick={() => setIsModalOpen(true)}>Add Founder</button>
+			<button
+				className={styles.submitButton}
+				onClick={() => setIsModalOpen(true)}
+			>
+				Add Founder
+			</button>
 			<Modal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}

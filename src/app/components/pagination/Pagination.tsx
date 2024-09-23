@@ -1,54 +1,55 @@
-'use server';
 import styles from './Pagination.module.css';
 import Link from 'next/link';
 
 function Pagination({
-  totalPages,
-  itemsPerPage,
-  currentOffset,
-  location,
-//   searchParams,
+	totalPages,
+	itemsPerPage,
+	currentOffset,
+	location,
+	searchParams,
 }: {
-  totalPages: number;
-  itemsPerPage: number;
-  currentOffset: number;
-  location: string;
-//   searchParams: URLSearchParams;
+	totalPages: number;
+	itemsPerPage: number;
+	currentOffset: number;
+	location: string;
+	searchParams: Record<string, string>;
 }) {
-  return (
-    <div className={styles.pagination}>
-      {Array.from({ length: totalPages }, (_, index) => {
-        const offset = index * itemsPerPage;
-        const isActive = offset === currentOffset;
+	const urlSearchParams = new URLSearchParams(searchParams);
 
-        let query = '';
+	return (
+		<div className={styles.pagination}>
+			{Array.from({ length: totalPages }, (_, index) => {
+				const offset = index * itemsPerPage;
+				const isActive = offset === currentOffset;
 
-      //   searchParams.delete('offset');
+				let query = '';
 
-      //   if (searchParams.toString().length) {
-      //       query += searchParams.toString();
-      //       query += '&'
-      //   }
+				urlSearchParams.delete('offset');
 
-        query += `offset=${offset}`
+				if (urlSearchParams.toString().length) {
+					query += urlSearchParams.toString();
+					query += '&';
+				}
 
-        return (
-          <Link
-            key={index}
-            href={`${location}/?${query}`}
-            passHref
-            className={
-              isActive
-                ? `${styles.pageButton} ${styles.activePageButton}`
-                : styles.pageButton
-            }
-          >
-            {index + 1}
-          </Link>
-        );
-      })}
-    </div>
-  );
+				query += `offset=${offset}`;
+
+				return (
+					<Link
+						key={index}
+						href={`${location}/?${query}`}
+						passHref
+						className={
+							isActive
+								? `${styles.pageButton} ${styles.activePageButton}`
+								: styles.pageButton
+						}
+					>
+						{index + 1}
+					</Link>
+				);
+			})}
+		</div>
+	);
 }
 
 export default Pagination;

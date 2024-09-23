@@ -94,18 +94,31 @@ export async function PATCH(
 		}
 
 		const body = await req.json();
-		const { name } = body;
+		const { name, founderId } = body;
 
-		if (!name) {
+		if (!name && !founderId) {
 			return NextResponse.json(
 				{ error: 'No fields provided for update.' },
 				{ status: 400 }
 			);
 		}
 
+		const updateFields: {
+			name?: string;
+			founder?: mongoose.Types.ObjectId;
+		} = {};
+
+		if (name) {
+			updateFields.name = name;
+		}
+
+		if (founderId && mongoose.Types.ObjectId.isValid(founderId)) {
+			updateFields.founder = new mongoose.Types.ObjectId(founderId);
+		}
+
 		const updatedCompany = await Company.findByIdAndUpdate(
 			companyId,
-			{ name },
+			updateFields,
 			{ new: true, runValidators: true }
 		);
 

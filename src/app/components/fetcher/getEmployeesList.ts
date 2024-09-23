@@ -16,7 +16,7 @@ export type Employees = {
 
 const getEmployeesListInCompany = async (
 	companyId: string | undefined
-): Promise<Employees | undefined> => {
+): Promise<Employees> => {
 	try {
 		const response = await fetch(
 			`http://localhost:3000/api/company/${companyId}/employee`
@@ -26,6 +26,10 @@ const getEmployeesListInCompany = async (
 	} catch (error) {
 		console.error('Error:', error);
 	}
+	return {
+		list: [],
+		count: 0,
+	};
 };
 
 export default getEmployeesListInCompany;

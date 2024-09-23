@@ -1,20 +1,69 @@
+'use client';
+import { useEffect, useState } from 'react';
 import getCompanyById from '@/app/components/fetcher/getCompanyById';
+import { Employees } from '@/app/components/fetcher/getEmployeesList';
 import styles from './page.module.css';
-import getEmployeesList from '@/app/components/fetcher/getEmployeesList';
 import CloseButton from '../../components/buttons/closeBtn/CloseButton';
-import Link from 'next/link';
 import DeleteCompanyButton from '../../components/buttons/deleteCompanyBtn/DeleteCompanyButton';
 import DeleteEmployeeButton from '@/app/components/buttons/deleteEmployeeBtn/DeleteEmployeeButton';
 import AddEmployeeButton from '@/app/components/buttons/addEmployee/AddEmployee';
+import Link from 'next/link';
+import ChangeCompanyInfo from '@/app/components/buttons/changeCompanyInfo/changeCompanyInfo';
+import ChangeEmployeeInfo from '@/app/components/changeEmployeeInfo/ChangeEmployeeInfo';
+import SearchParamsBlock from '@/app/components/searchParamsBlock/SearchParamsBlock';
+import Pagination from '@/app/components/pagination/Pagination';
+import searchEmployee from '@/app/components/fetcher/searchEmployees';
 
-export default async function Page({
+export default function Page({
 	params,
+	searchParams,
 }: {
 	params: { companyId: string };
+	searchParams: Record<string, string>;
 }) {
-	const company = await getCompanyById(params.companyId);
-	const employeesData = await getEmployeesList(params.companyId);
-	const employees = employeesData?.list;
+	const [company, setCompany] = useState<any>(null);
+	const [employees, setEmployees] = useState<Employees>({
+		list: [],
+		count: 0,
+	});
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+
+	const itemsPerPage = 20;
+	const currentOffset = parseInt(searchParams.offset || '0', 10);
+	const totalPages = Math.ceil(employees.count / itemsPerPage);
+
+	const fetchData = async () => {
+		setIsLoading(true);
+		try {
+			const companyData = await getCompanyById(params.companyId);
+			setCompany(companyData);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	useEffect(() => {
+		fetchData();
+	}, [params.companyId]);
+
+	const searchData = async () => {
+		const employeesData = await searchEmployee(
+			new URLSearchParams(searchParams)
+		);
+		if (employeesData) setEmployees(employeesData);
+	};
+
+	useEffect(() => {
+		searchData();
+	}, [searchParams]);
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	console.log({ searchParams });
 
 	return (
 		<div>
@@ -22,17 +71,23 @@ export default async function Page({
 				<div className={styles.companyName}>{company?.name}</div>
 			</div>
 			<div className={styles.buttonsContainer}>
-				<div className={styles.addButton}>
-					<AddEmployeeButton />
-				</div>
+				<AddEmployeeButton companyId={params.companyId} />
+				<ChangeCompanyInfo
+					companyId={params.companyId}
+					onSuccess={fetchData}
+				/>
 				<DeleteCompanyButton companyId={params.companyId} />
 			</div>
-			{employees && employees.length > 0 ? (
+			<div className={styles.searchbarWrapper}>
+				<SearchParamsBlock
+					count={employees.count}
+					searchParams={searchParams}
+					searchField={'firstName'}
+				/>
+			</div>
+			{employees && employees.count > 0 ? (
 				<div className={styles.employeesContainer}>
-					<p className={styles.resultsCounter}>
-						Results: {employeesData?.count}
-					</p>
-					{employees.map((employee) => (
+					{employees.list.map((employee) => (
 						<div key={employee.id} className={styles.employeeCard}>
 							<div className={styles.employeeInfo}>
 								<Link
@@ -43,9 +98,15 @@ export default async function Page({
 								</Link>
 								<p>{employee.position}</p>
 							</div>
-							<div className={styles.deleteEmployee}>
+							<div>
+								<ChangeEmployeeInfo
+									companyId={params.companyId}
+									employeeId={employee.id}
+									onSuccess={fetchData}
+								/>
 								<DeleteEmployeeButton
 									employeeId={employee.id}
+									refreshEmployeesList={fetchData}
 								/>
 							</div>
 						</div>
@@ -54,6 +115,13 @@ export default async function Page({
 			) : (
 				<p className={styles.employeesContainer}>No employees found</p>
 			)}
+			<Pagination
+				totalPages={totalPages}
+				itemsPerPage={itemsPerPage}
+				currentOffset={currentOffset}
+				searchParams={searchParams}
+				location="company"
+			/>
 			<CloseButton />
 		</div>
 	);

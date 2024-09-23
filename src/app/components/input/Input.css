@@ -1,41 +1,41 @@
 .input-wrapper {
-  position: relative;
-  margin-bottom: 20px;
-  width: 100%;
-  display: flex;
+	position: relative;
+	margin-bottom: 20px;
+	width: 100%;
+	display: flex;
 }
 
 .input-custom {
-  border: none;
-  border: var(--border-light);
-  border-radius: var(--border-radius-small);
-  padding: var(--padding-small);
-  background-color: var(--color-input-bg);
-  outline: none;
-  color: var(--color-main);
-  font-size: var(--font-size-small);
-  width: 100%;
+	border: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 8px;
+	background-color: gray;
+	outline: none;
+	color: black;
+	font-size: 16px;
+	width: 100%;
 }
 
 .input-label {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  font-size: var(--font-size-small);
-  color: var(--dark-gray-color);
-  transition: all 0.2s ease;
-  pointer-events: none;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	font-size: 16px;
+	color: white;
+	transition: all 0.2s ease;
+	pointer-events: none;
 }
 
 .input-wrapper.focused .input-label,
 .input-wrapper.has-value .input-label {
-  top: -14px;
-  left: 4px;
-  font-size: 12px;
+	top: -14px;
+	left: 4px;
+	font-size: 12px;
 }
 
 .input-wrapper.required .input-label::after {
-  content: "*";
-  color: red;
-  margin-left: 4px;
+	content: '*';
+	color: red;
+	margin-left: 4px;
 }

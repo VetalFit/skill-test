@@ -4,11 +4,17 @@ import styles from './DeleteEmployeeButton.module.css';
 
 interface DeleteEmployeeButtonProps {
 	employeeId: string;
+	refreshEmployeesList: () => void;
 }
 
-const DeleteEmployeeButton = ({ employeeId }: DeleteEmployeeButtonProps) => {
+const DeleteEmployeeButton = ({
+	employeeId,
+	refreshEmployeesList,
+}: DeleteEmployeeButtonProps) => {
 	const handleDelete = async () => {
-		const confirmation = confirm('Are you sure you want to delete this employee?');
+		const confirmation = confirm(
+			'Are you sure you want to delete this employee?'
+		);
 		if (!confirmation) return;
 
 		try {
@@ -17,14 +23,14 @@ const DeleteEmployeeButton = ({ employeeId }: DeleteEmployeeButtonProps) => {
 			});
 
 			if (response.ok) {
-				alert('Employee deleted successfully.');
-				window.location.reload();
+				console.log('Employee deleted successfully.');
+				refreshEmployeesList();
 			} else {
-				alert('Failed to delete the employee.');
+				console.error('Failed to delete the employee.');
 			}
 		} catch (error) {
 			console.error('Error:', error);
-			alert('An error occurred while deleting the employee.');
+			console.error('An error occurred while deleting the employee.');
 		}
 	};
 

@@ -2,13 +2,11 @@
 
 import styles from './DeleteCompanyButton.module.css';
 
-interface DeleteCompanyButtonProps {
-	companyId: string;
-}
-
-const DeleteCompanyButton = ({ companyId }: DeleteCompanyButtonProps) => {
+const DeleteCompanyButton = ({ companyId }: { companyId: string }) => {
 	const handleDelete = async () => {
-		const confirmation = confirm('Are you sure you want to delete this company?');
+		const confirmation = confirm(
+			'Are you sure you want to delete this company?'
+		);
 		if (!confirmation) return;
 
 		try {
@@ -17,14 +15,14 @@ const DeleteCompanyButton = ({ companyId }: DeleteCompanyButtonProps) => {
 			});
 
 			if (response.ok) {
-				alert('Company deleted successfully.');
+				console.log('Company deleted successfully.');
 				window.location.href = '/';
 			} else {
-				alert('Failed to delete the company.');
+				console.error('Failed to delete the company.');
 			}
 		} catch (error) {
 			console.error('Error:', error);
-			alert('An error occurred while deleting the company.');
+			// alert('An error occurred while deleting the company.');
 		}
 	};
 

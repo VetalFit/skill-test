@@ -31,7 +31,7 @@
 	border: 1px solid #ccc;
 	border-radius: 12px;
 	padding: 10px;
-	width: 400px;
+	width: 500px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -48,10 +48,6 @@
 	font-size: 16px;
 }
 
-.deleteEmployee {
-	margin-right: 8px;
-}
-
 .buttonsContainer {
 	display: flex;
 	justify-content: center;
@@ -60,16 +56,10 @@
 	margin-bottom: 20px;
 }
 
-.addButton button {
-	padding: 10px 20px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-}
-
-.addButton button:hover {
-	background-color: #0056b3;
+.searchbarWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }

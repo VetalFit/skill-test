@@ -1,32 +1,58 @@
 'use client';
-import React, { useState } from 'react';
-import Modal from '../../modal/Modal';
-import styles from './AddEmployee.module.css';
+import { useEffect, useState } from 'react';
+import styles from './ChangeEmployeeInfo.module.css';
+import Modal from '../modal/Modal';
+import getEmployeeById from '../fetcher/getEmployeeById';
 
 export default function AddEmployeeButton({
 	companyId,
+	employeeId,
+	onSuccess,
 }: {
 	companyId: string;
+	employeeId: string;
+	onSuccess: () => void;
 }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [position, setPosition] = useState('');
 
+	useEffect(() => {
+		const fetchFounders = async () => {
+			try {
+				const employee = await getEmployeeById(employeeId);
+				if (employee) {
+					setFirstName(employee.firstName);
+					setLastName(employee.lastName);
+					setPosition(employee.position);
+				}
+			} catch (error) {
+				console.error('Failed to fetch founders', error);
+			}
+		};
+		if (isModalOpen) {
+			fetchFounders();
+		}
+	}, [isModalOpen]);
+
 	const handleSubmit = async () => {
 		try {
-			const response = await fetch(`http://localhost:3000/api/employee`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					firstName,
-					lastName,
-					companyId,
-					position,
-				}),
-			});
+			const response = await fetch(
+				`http://localhost:3000/api/employee/${employeeId}`,
+				{
+					method: 'PATCH',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						firstName,
+						lastName,
+						companyId,
+						position,
+					}),
+				}
+			);
 
 			if (!response.ok) {
 				throw new Error('Failed to add founder');
@@ -35,7 +61,7 @@ export default function AddEmployeeButton({
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');
-			window.location.reload();
+			onSuccess()
 		} catch (error) {
 			console.error('Error adding founder');
 		}
@@ -47,12 +73,12 @@ export default function AddEmployeeButton({
 				className={styles.submitButton}
 				onClick={() => setIsModalOpen(true)}
 			>
-				Add Employee
+				Change info
 			</button>
 			<Modal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
-				title="Add Employee"
+				title="Change info"
 			>
 				<div className={styles.inputWrapper}>
 					<input
@@ -78,7 +104,7 @@ export default function AddEmployeeButton({
 					/>
 				</div>
 				<button className={styles.submitButton} onClick={handleSubmit}>
-					Add
+					Change
 				</button>
 			</Modal>
 		</>

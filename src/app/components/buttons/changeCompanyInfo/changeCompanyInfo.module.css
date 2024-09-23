@@ -1,3 +1,7 @@
+.submitButton {
+	margin: 0 10px;
+}
+
 .inputWrapper {
 	display: flex;
 	flex-direction: column;
@@ -13,18 +17,18 @@
 	border-radius: 5px;
 }
 
-.submitButton {
-	background-color: #007bff;
+.changeButton {
+	padding: 10px 20px;
+	background-color: #a88401;
 	color: white;
 	border: none;
-	padding: 10px 20px;
-	font-size: 16px;
 	border-radius: 5px;
 	cursor: pointer;
+	font-size: 16px;
 }
 
-.submitButton:hover {
-	background-color: #0056b3;
+.changeButton:hover {
+	background-color: #665001;
 }
 
 .dropdown {

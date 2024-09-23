@@ -11,9 +11,13 @@ export type Companies = {
 	count: number;
 };
 
-const searchCompanies = async (): Promise<Companies> => {
+const searchCompanies = async (
+	queryParams: URLSearchParams
+): Promise<Companies> => {
 	try {
-		const response = await fetch('http://localhost:3000/api/company');
+		const response = await fetch(
+			`http://localhost:3000/api/company/?${queryParams}`
+		);
 		const data = await response.json();
 		const companyData = data;
 		return companyData;

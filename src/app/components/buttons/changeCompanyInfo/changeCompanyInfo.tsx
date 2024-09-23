@@ -1,11 +1,18 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Modal from '../../modal/Modal';
-import styles from './AddCompany.module.css';
+import styles from './changeCompanyInfo.module.css';
 import getFoundersList, { Founders } from '../../fetcher/getFoundersList';
 import { Founder } from '../../fetcher/getFounderById';
+import getCompanyById from '../../fetcher/getCompanyById';
 
-export default function AddCompanyButton() {
+export default function ChangeCompanyInfo({
+	companyId,
+	onSuccess,
+}: {
+	companyId: string;
+	onSuccess: () => void;
+}) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [name, setName] = useState('');
 	const [founderName, setFounderName] = useState('');
@@ -18,6 +25,12 @@ export default function AddCompanyButton() {
 			try {
 				const data = await getFoundersList();
 				if (data) setFounders(data);
+				const company = await getCompanyById(companyId);
+				if (company) {
+					setName(company.name);
+					setFounderId(company.founder.id);
+					setFounderName(company.founder.firstName);
+				}
 			} catch (error) {
 				console.error('Failed to fetch founders', error);
 			}
@@ -41,43 +54,45 @@ export default function AddCompanyButton() {
 
 	const handleSubmit = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/api/company', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name,
-					founderId,
-				}),
-			});
+			const response = await fetch(
+				`http://localhost:3000/api/company/${companyId}`,
+				{
+					method: 'PATCH',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name,
+						founderId,
+					}),
+				}
+			);
 
 			if (!response.ok) {
-				throw new Error('Failed to add company');
+				throw new Error('Failed to change company');
 			}
 
 			setIsModalOpen(false);
 			setName('');
 			setFounderName('');
-			window.location.reload();
-			// updateCompanyList();
+			onSuccess();
 		} catch (error) {
-			console.error('Error adding company');
+			console.error('Error changing company');
 		}
 	};
 
 	return (
 		<>
 			<button
-				className={styles.submitButton}
+				className={styles.changeButton}
 				onClick={() => setIsModalOpen(true)}
 			>
-				Add Company
+				Change Info
 			</button>
 			<Modal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
-				title="Add Company"
+				title="Change info"
 			>
 				<div className={styles.inputWrapper}>
 					<input
@@ -115,10 +130,10 @@ export default function AddCompanyButton() {
 					</ul>
 				)}
 				<button
-					className={styles.submitButton}
+					className={styles.changeButton}
 					onClick={() => handleSubmit()}
 				>
-					Add
+					Change
 				</button>
 			</Modal>
 		</>

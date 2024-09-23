@@ -67,20 +67,6 @@
 	z-index: 10;
 }
 
-.buttonsContainer button {
-	padding: 10px 20px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 16px;
-}
-
-.buttonsContainer button:hover {
-	background-color: #0056b3;
-}
-
 a.primary {
 	background: var(--foreground);
 	color: var(--background);
@@ -90,4 +76,12 @@ a.primary {
 a.secondary {
 	border-color: var(--gray-alpha-200);
 	min-width: 180px;
+}
+
+.searchbarWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
