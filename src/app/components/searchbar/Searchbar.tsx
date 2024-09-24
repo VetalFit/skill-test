@@ -1,10 +1,10 @@
 'use client';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import styles from './SecondarySearchbar.module.css';
+import styles from './Searchbar.module.css';
 import Input from '../input/Input';
 
-function SecondarySearchbar({
+function Searchbar({
 	initialSearch,
 	searchField,
 }: {
@@ -75,4 +75,4 @@ function SecondarySearchbar({
 	);
 }
 
-export default SecondarySearchbar;
+export default Searchbar;

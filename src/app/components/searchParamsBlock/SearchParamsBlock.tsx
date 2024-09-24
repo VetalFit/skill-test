@@ -1,7 +1,7 @@
 'use client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import styles from './SearchParamsBlock.module.css';
-import SecondarySearchbar from '../searchbar/Searchbar';
+import Searchbar from '../searchbar/Searchbar';
 
 function SearchParamsBlock({
 	count,
@@ -49,7 +49,7 @@ function SearchParamsBlock({
 			</div>
 			<div className={styles.searchHeader}>
 				<div className={styles.searchBlock}>
-					<SecondarySearchbar
+					<Searchbar
 						initialSearch={searchParams.search}
 						searchField={searchField}
 					/>
