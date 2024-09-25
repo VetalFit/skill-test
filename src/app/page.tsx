@@ -5,6 +5,7 @@ import Pagination from './components/pagination/Pagination';
 import AddFounderButton from './components/buttons/addFounder/AddFounder';
 import AddCompanyButton from './components/buttons/addCompany/AddCompany';
 import SearchParamsBlock from './components/searchParamsBlock/SearchParamsBlock';
+import FoundersList from './components/buttons/foundersList/FoundersList';
 
 export default async function Home({
 	searchParams,
@@ -24,6 +25,7 @@ export default async function Home({
 				<div className={styles.title}>Companies</div>
 				<div className={styles.buttonsContainer}>
 					<AddFounderButton /> <AddCompanyButton />
+					<FoundersList />
 				</div>
 				<div className={styles.searchbarWrapper}>
 					<SearchParamsBlock

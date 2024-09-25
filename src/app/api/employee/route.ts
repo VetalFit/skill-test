@@ -43,15 +43,27 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
 	try {
 		const body = await req.json();
-		const { firstName, lastName, companyId, position } = body;
-		if (!firstName || !lastName || !companyId || !position) {
+		const { firstName, lastName, companyId, position, technologies } = body;
+		if (
+			!firstName ||
+			!lastName ||
+			!companyId ||
+			!position ||
+			!technologies
+		) {
 			return new NextResponse(null, {
 				status: 400,
 				statusText: `Missing field.`,
 			});
 		}
 
-		const employeeDto = { firstName, lastName, companyId, position };
+		const employeeDto = {
+			firstName,
+			lastName,
+			companyId,
+			position,
+			technologies,
+		};
 		const creationResult = await Employee.create(employeeDto);
 		const employee = await Employee.findById(creationResult._id).populate(
 			'companyId'

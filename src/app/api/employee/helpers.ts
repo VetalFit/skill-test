@@ -9,5 +9,6 @@ export const mapEmployee = (employee: InstanceType<typeof Employee>) => {
 			? { name: employee.companyId.name, id: employee.companyId.id }
 			: null,
 		position: employee.position,
+		technologies: employee.technologies,
 	};
 };

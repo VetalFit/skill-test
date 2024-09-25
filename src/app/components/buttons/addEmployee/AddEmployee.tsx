@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import Modal from '../../modal/Modal';
 import styles from './AddEmployee.module.css';
+import ListTest from '../../technologiesLIst/TechnologiesList';
 
 export default function AddEmployeeButton({
 	companyId,
@@ -12,6 +13,24 @@ export default function AddEmployeeButton({
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [position, setPosition] = useState('');
+	const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+		[]
+	);
+
+	const handleSetSelectedTechnologies = (technology: string) => {
+		setSelectedTechnologies((prevState: string[]) => {
+			if (!prevState.includes(technology)) {
+				return [...prevState, technology];
+			}
+			return prevState;
+		});
+	};
+
+	const handleDelSelectedTechnologies = (technology: string) => {
+		setSelectedTechnologies((prevState: string[]) => {
+			return prevState.filter((tech) => tech !== technology);
+		});
+	};
 
 	const handleSubmit = async () => {
 		try {
@@ -25,6 +44,7 @@ export default function AddEmployeeButton({
 					lastName,
 					companyId,
 					position,
+					technologies: selectedTechnologies,
 				}),
 			});
 
@@ -54,6 +74,27 @@ export default function AddEmployeeButton({
 				onClose={() => setIsModalOpen(false)}
 				title="Add Employee"
 			>
+				{
+					<div className={styles.technologiesContainer}>
+						<div className={styles.titleTechnologies}>
+							technologies:
+						</div>
+						{selectedTechnologies.map((tech) => {
+							return (
+								<div
+									key={tech}
+									onClick={() =>
+										handleDelSelectedTechnologies(tech)
+									}
+									className={styles.technologyPill}
+								>
+									{tech}{' '}
+									<span className={styles.removeIcon}>✖</span>
+								</div>
+							);
+						})}
+					</div>
+				}
 				<div className={styles.inputWrapper}>
 					<input
 						type="text"
@@ -76,10 +117,14 @@ export default function AddEmployeeButton({
 						onChange={(e) => setPosition(e.target.value)}
 						placeholder="Enter Position"
 					/>
+					<ListTest handleSelect={handleSetSelectedTechnologies} />
+					<button
+						className={styles.submitButton}
+						onClick={handleSubmit}
+					>
+						Add
+					</button>
 				</div>
-				<button className={styles.submitButton} onClick={handleSubmit}>
-					Add
-				</button>
 			</Modal>
 		</>
 	);

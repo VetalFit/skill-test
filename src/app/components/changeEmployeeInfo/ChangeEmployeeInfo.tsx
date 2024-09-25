@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from './ChangeEmployeeInfo.module.css';
 import Modal from '../modal/Modal';
 import getEmployeeById from '../fetcher/getEmployeeById';
+import ListTest from '../technologiesLIst/TechnologiesList';
 
 export default function AddEmployeeButton({
 	companyId,
@@ -17,6 +18,23 @@ export default function AddEmployeeButton({
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [position, setPosition] = useState('');
+	const [technologies, setTechnologies] = useState<string[]>([]);
+
+	console.log({ technologies });
+	const handleSetSelectedTechnologies = (technology: string) => {
+		setTechnologies((prevState: string[]) => {
+			if (!prevState.includes(technology)) {
+				return [...prevState, technology];
+			}
+			return prevState;
+		});
+	};
+
+	const handleDelSelectedTechnologies = (technology: string) => {
+		setTechnologies((prevState: string[]) => {
+			return prevState.filter((tech) => tech !== technology);
+		});
+	};
 
 	useEffect(() => {
 		const fetchFounders = async () => {
@@ -26,6 +44,7 @@ export default function AddEmployeeButton({
 					setFirstName(employee.firstName);
 					setLastName(employee.lastName);
 					setPosition(employee.position);
+					setTechnologies(employee.technologies);
 				}
 			} catch (error) {
 				console.error('Failed to fetch founders', error);
@@ -50,6 +69,7 @@ export default function AddEmployeeButton({
 						lastName,
 						companyId,
 						position,
+						technologies,
 					}),
 				}
 			);
@@ -61,7 +81,7 @@ export default function AddEmployeeButton({
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');
-			onSuccess()
+			onSuccess();
 		} catch (error) {
 			console.error('Error adding founder');
 		}
@@ -70,7 +90,7 @@ export default function AddEmployeeButton({
 	return (
 		<>
 			<button
-				className={styles.submitButton}
+				className={styles.mainBtn}
 				onClick={() => setIsModalOpen(true)}
 			>
 				Change info
@@ -80,6 +100,25 @@ export default function AddEmployeeButton({
 				onClose={() => setIsModalOpen(false)}
 				title="Change info"
 			>
+				<div className={styles.technologiesContainer}>
+					<div className={styles.titleTechnologies}>
+						technologies:
+					</div>
+					{technologies?.map((tech) => {
+						return (
+							<div
+								key={tech}
+								onClick={() =>
+									handleDelSelectedTechnologies(tech)
+								}
+								className={styles.technologyPill}
+							>
+								{tech}{' '}
+								<span className={styles.removeIcon}>✖</span>
+							</div>
+						);
+					})}
+				</div>
 				<div className={styles.inputWrapper}>
 					<input
 						type="text"
@@ -103,6 +142,7 @@ export default function AddEmployeeButton({
 						placeholder="Enter Position"
 					/>
 				</div>
+				<ListTest handleSelect={handleSetSelectedTechnologies} />
 				<button className={styles.submitButton} onClick={handleSubmit}>
 					Change
 				</button>

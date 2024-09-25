@@ -7,6 +7,7 @@ export type Employee = {
 		id: string;
 	};
 	position: string;
+	technologies: string[];
 };
 
 export type Employees = {

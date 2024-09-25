@@ -18,16 +18,26 @@
 	width: 400px;
 	text-align: center;
 	z-index: 10;
+	max-height: 650px;
+}
+.modalHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.modalHeader h2 {
+	margin: 0;
+	color: white;
 }
 
 .closeButton {
-	margin-top: 20px;
-	padding: 10px 20px;
-	background-color: red;
-	color: white;
+	background: none;
 	border: none;
-	border-radius: 5px;
+	font-size: 36px;
+	font-weight: bold;
+	color: white;
 	cursor: pointer;
-	margin-left: 20px;
-	font-size: 16px;
+	outline: none;
 }

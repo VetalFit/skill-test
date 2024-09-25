@@ -9,16 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fs": "^0.0.1-security",
     "immutable": "^4.0.0-rc.12",
+    "lodash.debounce": "^4.0.8",
     "mongodb": "^6.9.0",
     "mongoose": "^8.6.2",
     "next": "14.2.11",
+    "papaparse": "^5.4.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-select": "^5.8.1",
     "react-virtualized": "^9.22.5"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
+    "@types/papaparse": "^5.3.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-virtualized": "^9.21.30",

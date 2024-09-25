@@ -1,0 +1,41 @@
+.submitButton {
+	background-color: #3d8d00;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-top: 15px;
+}
+
+.submitButton:hover {
+	background-color: #2f6d00;
+}
+
+.founderCard {
+	background-color: #b4b4b4;
+	border: 1px solid #dee2e6;
+	border-radius: 10px;
+	padding: 15px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-top: 5px;
+}
+
+.founderName {
+	font-size: 16px;
+	font-weight: bold;
+	color: #343a40;
+}
+
+.noFounders {
+	text-align: center;
+	color: #dc3545;
+	font-weight: bold;
+	padding: 20px;
+}
+
+.results {
+	display: flex;
+	justify-content: start;
+}

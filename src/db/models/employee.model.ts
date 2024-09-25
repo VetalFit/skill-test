@@ -6,6 +6,7 @@ const employeeSchema = new mongoose.Schema({
 	lastName: { type: String },
 	companyId: { type: mongoose.Schema.Types.ObjectId, ref: companyModel },
 	position: { type: String },
+	technologies: { type: [String] },
 });
 
 export default mongoose.models.Employee ||

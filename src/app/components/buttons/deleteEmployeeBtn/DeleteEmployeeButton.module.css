@@ -6,6 +6,8 @@
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 14px;
+	min-width: 147px;
+	max-height: 36px;
 }
 
 .deleteButton:hover {

@@ -22,7 +22,6 @@ export default function AddFounderButton() {
 				throw new Error('Failed to add founder');
 			}
 
-			// alert('Founder added successfully!');
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');

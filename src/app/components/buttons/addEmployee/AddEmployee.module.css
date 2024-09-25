@@ -16,6 +16,7 @@
 .inputWrapper {
 	display: flex;
 	flex-direction: column;
+	max-height: 400px;
 }
 
 .input {
@@ -36,6 +37,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
+	margin-top: 15px;
 }
 
 .submitButton:hover {
@@ -67,4 +69,48 @@
 
 .dropdownItem:last-child {
 	border-bottom: none;
+}
+
+.technologiesContainer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	align-items: flex-start;
+	min-height: 50px;
+	max-height: 70px;
+	overflow: hidden;
+}
+
+.titleTechnologies {
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	margin-top: 10px;
+	margin-right: 5px;
+}
+
+.tech {
+	display: flex;
+}
+
+.technologyPill {
+	background-color: rgb(77, 0, 84);
+	border-radius: 25px;
+	padding: 4px 8px;
+	font-size: 14px;
+	display: inline-block;
+	align-items: center;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	margin-top: 5px;
+}
+
+.technologyPill:hover {
+	background-color: rgb(43, 0, 47);
+}
+
+.removeIcon {
+	margin-left: 8px;
+	color: #ff4d4d;
+	font-weight: bold;
 }

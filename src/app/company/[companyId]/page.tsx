@@ -13,6 +13,7 @@ import ChangeEmployeeInfo from '@/app/components/changeEmployeeInfo/ChangeEmploy
 import SearchParamsBlock from '@/app/components/searchParamsBlock/SearchParamsBlock';
 import Pagination from '@/app/components/pagination/Pagination';
 import searchEmployee from '@/app/components/fetcher/searchEmployees';
+import LoadingSpinner from '@/app/components/loadingSpinner/LoadingSpinner';
 
 export default function Page({
 	params,
@@ -60,10 +61,8 @@ export default function Page({
 	}, [searchParams]);
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return <LoadingSpinner />;
 	}
-
-	console.log({ searchParams });
 
 	return (
 		<div>
@@ -97,8 +96,24 @@ export default function Page({
 									{employee.firstName} {employee.lastName}
 								</Link>
 								<p>{employee.position}</p>
+
+								<div className={styles.technologyContainer}>
+									technology:{' '}
+									{employee.technologies.map(
+										(tech: string, index: number) => (
+											<span
+												key={index}
+												className={
+													styles.technologyPill
+												}
+											>
+												{tech}
+											</span>
+										)
+									)}
+								</div>
 							</div>
-							<div>
+							<div className={styles.btnWrapper}>
 								<ChangeEmployeeInfo
 									companyId={params.companyId}
 									employeeId={employee.id}

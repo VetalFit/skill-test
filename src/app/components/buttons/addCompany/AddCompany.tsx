@@ -27,6 +27,12 @@ export default function AddCompanyButton() {
 		}
 	}, [isModalOpen]);
 
+	useEffect(() => {
+		if (founders && isModalOpen && !founderName) {
+			setFilteredFounders(founders.list.slice(0, 3));
+		}
+	}, [founders, isModalOpen, founderName]);
+
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setFounderName(value);

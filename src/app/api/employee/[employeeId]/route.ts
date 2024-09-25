@@ -92,9 +92,15 @@ export async function PATCH(
 		}
 
 		const body = await req.json();
-		const { firstName, lastName, companyId, position } = body;
+		const { firstName, lastName, companyId, position, technologies } = body;
 
-		if (!firstName || !lastName || !companyId || !position) {
+		if (
+			!firstName ||
+			!lastName ||
+			!companyId ||
+			!position ||
+			!technologies
+		) {
 			return NextResponse.json(
 				{ error: 'No fields provided for update.' },
 				{ status: 400 }
@@ -103,7 +109,7 @@ export async function PATCH(
 
 		const updatedEmployee = await Employee.findByIdAndUpdate(
 			employeeId,
-			{ firstName, lastName, companyId, position },
+			{ firstName, lastName, companyId, position, technologies },
 			{ new: true, runValidators: true }
 		);
 

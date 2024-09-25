@@ -86,12 +86,6 @@
 	transform: translate(-50%, -50%);
 }
 
-.divider {
-	width: 1px;
-	height: 90%;
-	background: gray;
-}
-
 .results {
 	margin-bottom: 4px;
 }
