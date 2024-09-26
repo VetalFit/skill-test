@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import styles from './modal.module.css';
+import styles from './Modal.module.css';
 
 interface ModalProps {
 	isOpen: boolean;
