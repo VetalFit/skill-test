@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import Modal from '../../modal/Modal';
 import styles from './AddEmployee.module.css';
-import ListTest from '../../technologiesLIst/TechnologiesList';
+import TechnologiesList from '../../technologiesLIst/TechnologiesList';
 
 export default function AddEmployeeButton({
 	companyId,
+	onSuccess,
 }: {
 	companyId: string;
+	onSuccess: () => void;
 }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [firstName, setFirstName] = useState('');
@@ -18,6 +20,9 @@ export default function AddEmployeeButton({
 	);
 
 	const handleSetSelectedTechnologies = (technology: string) => {
+		if (selectedTechnologies.length >= 5) {
+			return;
+		}
 		setSelectedTechnologies((prevState: string[]) => {
 			if (!prevState.includes(technology)) {
 				return [...prevState, technology];
@@ -34,19 +39,22 @@ export default function AddEmployeeButton({
 
 	const handleSubmit = async () => {
 		try {
-			const response = await fetch(`http://localhost:3000/api/employee`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					firstName,
-					lastName,
-					companyId,
-					position,
-					technologies: selectedTechnologies,
-				}),
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/employee`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						firstName,
+						lastName,
+						companyId,
+						position,
+						technologies: selectedTechnologies,
+					}),
+				}
+			);
 
 			if (!response.ok) {
 				throw new Error('Failed to add founder');
@@ -55,7 +63,7 @@ export default function AddEmployeeButton({
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');
-			window.location.reload();
+			onSuccess();
 		} catch (error) {
 			console.error('Error adding founder');
 		}
@@ -74,27 +82,6 @@ export default function AddEmployeeButton({
 				onClose={() => setIsModalOpen(false)}
 				title="Add Employee"
 			>
-				{
-					<div className={styles.technologiesContainer}>
-						<div className={styles.titleTechnologies}>
-							technologies:
-						</div>
-						{selectedTechnologies.map((tech) => {
-							return (
-								<div
-									key={tech}
-									onClick={() =>
-										handleDelSelectedTechnologies(tech)
-									}
-									className={styles.technologyPill}
-								>
-									{tech}{' '}
-									<span className={styles.removeIcon}>✖</span>
-								</div>
-							);
-						})}
-					</div>
-				}
 				<div className={styles.inputWrapper}>
 					<input
 						type="text"
@@ -117,7 +104,32 @@ export default function AddEmployeeButton({
 						onChange={(e) => setPosition(e.target.value)}
 						placeholder="Enter Position"
 					/>
-					<ListTest handleSelect={handleSetSelectedTechnologies} />
+					{
+						<div className={styles.technologiesContainer}>
+							<div className={styles.titleTechnologies}>
+								technologies:
+							</div>
+							{selectedTechnologies.map((tech) => {
+								return (
+									<div
+										key={tech}
+										onClick={() =>
+											handleDelSelectedTechnologies(tech)
+										}
+										className={styles.technologyPill}
+									>
+										{tech}{' '}
+										<span className={styles.removeIcon}>
+											✖
+										</span>
+									</div>
+								);
+							})}
+						</div>
+					}
+					<TechnologiesList
+						handleSelect={handleSetSelectedTechnologies}
+					/>
 					<button
 						className={styles.submitButton}
 						onClick={handleSubmit}

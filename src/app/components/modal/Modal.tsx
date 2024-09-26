@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import styles from './modal.module.css';
 
 interface ModalProps {
@@ -14,7 +15,20 @@ export default function Modal({
 	title,
 	children,
 }: ModalProps) {
-	if (!isOpen) return null;
+	const [isVisible, setIsVisible] = useState(isOpen);
+
+	useEffect(() => {
+		if (isOpen) {
+			setIsVisible(true);
+		} else {
+			const timer = setTimeout(() => {
+				setIsVisible(false);
+			}, 300);
+			return () => clearTimeout(timer);
+		}
+	}, [isOpen]);
+
+	if (!isVisible) return null;
 
 	const handleOverlayClick = (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -25,8 +39,17 @@ export default function Modal({
 	};
 
 	return (
-		<div className={styles.modalOverlay} onClick={handleOverlayClick}>
-			<div className={styles.modalContent}>
+		<div
+			className={`${styles.modalOverlay} ${
+				isOpen ? styles.modalOverlayOpen : ''
+			}`}
+			onClick={handleOverlayClick}
+		>
+			<div
+				className={`${styles.modalContent} ${
+					isOpen ? styles.modalContentOpen : ''
+				}`}
+			>
 				<div className={styles.modalHeader}>
 					<h2>{title}</h2>
 					<button onClick={onClose} className={styles.closeButton}>

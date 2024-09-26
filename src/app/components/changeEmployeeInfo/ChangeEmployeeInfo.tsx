@@ -20,7 +20,6 @@ export default function AddEmployeeButton({
 	const [position, setPosition] = useState('');
 	const [technologies, setTechnologies] = useState<string[]>([]);
 
-	console.log({ technologies });
 	const handleSetSelectedTechnologies = (technology: string) => {
 		setTechnologies((prevState: string[]) => {
 			if (!prevState.includes(technology)) {
@@ -58,7 +57,7 @@ export default function AddEmployeeButton({
 	const handleSubmit = async () => {
 		try {
 			const response = await fetch(
-				`http://localhost:3000/api/employee/${employeeId}`,
+				`${process.env.NEXT_PUBLIC_API_URL}/api/employee/${employeeId}`,
 				{
 					method: 'PATCH',
 					headers: {
@@ -100,25 +99,6 @@ export default function AddEmployeeButton({
 				onClose={() => setIsModalOpen(false)}
 				title="Change info"
 			>
-				<div className={styles.technologiesContainer}>
-					<div className={styles.titleTechnologies}>
-						technologies:
-					</div>
-					{technologies?.map((tech) => {
-						return (
-							<div
-								key={tech}
-								onClick={() =>
-									handleDelSelectedTechnologies(tech)
-								}
-								className={styles.technologyPill}
-							>
-								{tech}{' '}
-								<span className={styles.removeIcon}>✖</span>
-							</div>
-						);
-					})}
-				</div>
 				<div className={styles.inputWrapper}>
 					<input
 						type="text"
@@ -141,6 +121,25 @@ export default function AddEmployeeButton({
 						onChange={(e) => setPosition(e.target.value)}
 						placeholder="Enter Position"
 					/>
+				</div>
+				<div className={styles.technologiesContainer}>
+					<div className={styles.titleTechnologies}>
+						technologies:
+					</div>
+					{technologies?.map((tech) => {
+						return (
+							<div
+								key={tech}
+								onClick={() =>
+									handleDelSelectedTechnologies(tech)
+								}
+								className={styles.technologyPill}
+							>
+								{tech}{' '}
+								<span className={styles.removeIcon}>✖</span>
+							</div>
+						);
+					})}
 				</div>
 				<ListTest handleSelect={handleSetSelectedTechnologies} />
 				<button className={styles.submitButton} onClick={handleSubmit}>

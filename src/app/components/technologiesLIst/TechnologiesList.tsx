@@ -16,7 +16,9 @@ interface ListProps {
 	handleSelect: (technology: string) => void;
 }
 
-const ListTest: React.FC<ListProps> = (props: ListProps): JSX.Element => {
+const TechnologiesList: React.FC<ListProps> = (
+	props: ListProps
+): JSX.Element => {
 	const tech: Technology[] = items as Technology[];
 	const { handleSelect } = props;
 	const [technologies, setTechnologies] = useState<Technology[]>(tech);
@@ -73,4 +75,4 @@ const ListTest: React.FC<ListProps> = (props: ListProps): JSX.Element => {
 	);
 };
 
-export default ListTest;
+export default TechnologiesList;

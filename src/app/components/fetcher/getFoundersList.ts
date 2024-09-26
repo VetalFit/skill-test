@@ -7,7 +7,9 @@ export type Founders = {
 
 const getFoundersList = async (): Promise<Founders> => {
 	try {
-		const response = await fetch(`http://localhost:3000/api/founder`);
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}/api/founder`
+		);
 		const data = await response.json();
 		return data;
 	} catch (error) {

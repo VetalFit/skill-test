@@ -55,7 +55,7 @@ export default function ChangeCompanyInfo({
 	const handleSubmit = async () => {
 		try {
 			const response = await fetch(
-				`http://localhost:3000/api/company/${companyId}`,
+				`${process.env.NEXT_PUBLIC_API_URL}/api/company/${companyId}`,
 				{
 					method: 'PATCH',
 					headers: {

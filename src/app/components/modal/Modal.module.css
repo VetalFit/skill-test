@@ -9,6 +9,14 @@
 	justify-content: center;
 	align-items: center;
 	z-index: 10;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modalOverlayOpen {
+	opacity: 1;
+	visibility: visible;
 }
 
 .modalContent {
@@ -18,8 +26,14 @@
 	width: 400px;
 	text-align: center;
 	z-index: 10;
-	max-height: 650px;
+	transform: scale(0.9);
+	transition: transform 0.3s ease;
 }
+
+.modalContentOpen {
+	transform: scale(1);
+}
+
 .modalHeader {
 	display: flex;
 	justify-content: space-between;

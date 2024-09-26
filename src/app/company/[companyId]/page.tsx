@@ -14,6 +14,7 @@ import SearchParamsBlock from '@/app/components/searchParamsBlock/SearchParamsBl
 import Pagination from '@/app/components/pagination/Pagination';
 import searchEmployee from '@/app/components/fetcher/searchEmployees';
 import LoadingSpinner from '@/app/components/loadingSpinner/LoadingSpinner';
+import { Company } from '@/app/components/fetcher/searchCompanies';
 
 export default function Page({
 	params,
@@ -22,14 +23,11 @@ export default function Page({
 	params: { companyId: string };
 	searchParams: Record<string, string>;
 }) {
-	const [company, setCompany] = useState<any>(null);
-	const [employees, setEmployees] = useState<Employees>({
-		list: [],
-		count: 0,
-	});
+	const [company, setCompany] = useState<Company | undefined>(undefined);
+	const [employees, setEmployees] = useState<Employees>({} as Employees);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 
-	const itemsPerPage = 20;
+	const itemsPerPage = 10;
 	const currentOffset = parseInt(searchParams.offset || '0', 10);
 	const totalPages = Math.ceil(employees.count / itemsPerPage);
 
@@ -38,6 +36,7 @@ export default function Page({
 		try {
 			const companyData = await getCompanyById(params.companyId);
 			setCompany(companyData);
+			await searchData();
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		} finally {
@@ -51,7 +50,8 @@ export default function Page({
 
 	const searchData = async () => {
 		const employeesData = await searchEmployee(
-			new URLSearchParams(searchParams)
+			new URLSearchParams(searchParams),
+			params.companyId
 		);
 		if (employeesData) setEmployees(employeesData);
 	};
@@ -64,13 +64,18 @@ export default function Page({
 		return <LoadingSpinner />;
 	}
 
+	console.log({ searchParams });
+
 	return (
 		<div>
 			<div className={styles.wrapperTitle}>
 				<div className={styles.companyName}>{company?.name}</div>
 			</div>
 			<div className={styles.buttonsContainer}>
-				<AddEmployeeButton companyId={params.companyId} />
+				<AddEmployeeButton
+					companyId={params.companyId}
+					onSuccess={fetchData}
+				/>
 				<ChangeCompanyInfo
 					companyId={params.companyId}
 					onSuccess={fetchData}
@@ -81,7 +86,7 @@ export default function Page({
 				<SearchParamsBlock
 					count={employees.count}
 					searchParams={searchParams}
-					searchField={'firstName'}
+					searchField={'firstName,lastName'}
 				/>
 			</div>
 			{employees && employees.count > 0 ? (
@@ -135,7 +140,7 @@ export default function Page({
 				itemsPerPage={itemsPerPage}
 				currentOffset={currentOffset}
 				searchParams={searchParams}
-				location="company"
+				location={`/company/${params.companyId}`}
 			/>
 			<CloseButton />
 		</div>

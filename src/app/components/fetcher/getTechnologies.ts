@@ -6,7 +6,7 @@ export type Technologies = {
 const getTechonologies = async (): Promise<Technologies[] | undefined> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/technologies`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/technologies`
 		);
 		const data = await response.json();
 		return data;

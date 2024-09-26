@@ -10,13 +10,16 @@ export default function AddFounderButton() {
 
 	const handleSubmit = async () => {
 		try {
-			const response = await fetch(`http://localhost:3000/api/founder`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ firstName, lastName }),
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/founder`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ firstName, lastName }),
+				}
+			);
 
 			if (!response.ok) {
 				throw new Error('Failed to add founder');

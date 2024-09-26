@@ -16,7 +16,7 @@ const searchCompanies = async (
 ): Promise<Companies> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/company/?${queryParams}`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/company/?${queryParams}`
 		);
 		const data = await response.json();
 		const companyData = data;

@@ -1,11 +1,11 @@
-import { Company } from "./searchCompanies";
+import { Company } from './searchCompanies';
 
 const getCompanyById = async (
 	companyId: string | undefined
 ): Promise<Company | undefined> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/company/${companyId}`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/company/${companyId}`
 		);
 		const data = await response.json();
 		return data;

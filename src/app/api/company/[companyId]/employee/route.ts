@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import dbConnect from '@/libs/mongoose';
-import Employee from '@/db/models/employee.model';
-import { paginatedSearch } from '@/db/models/tools/common';
+import EmployeeModel from '@/db/models/employee.model';
+import { paginatedEmployeeSearch } from '@/db/models/tools/common';
 import { NextRequest, NextResponse } from 'next/server';
 import { mapEmployee } from '@/app/api/employee/helpers';
+import { Employee } from '@/app/components/fetcher/getEmployeesList';
 
 export async function GET(
 	req: NextRequest,
@@ -25,27 +26,24 @@ export async function GET(
 
 		const limit = queryParams.get('limit');
 		const offset = queryParams.get('offset');
-		const searchField = queryParams.get('searchField');
 		const searchValue = queryParams.get('searchValue');
 
-		const { list, count } = await paginatedSearch(
-			Employee,
-			{ companyId },
-			searchField,
+		const { list, count } = await paginatedEmployeeSearch(
+			EmployeeModel,
 			searchValue,
 			Number(limit ?? 10),
 			Number(offset ?? 0),
-			['companyId']
+			companyId
 		);
 
 		const employees = list;
 		const employeeCount = count;
-		const mappedFounders = employees.map((employee) =>
+		const mappedEmployees = employees.map((employee: Employee) =>
 			mapEmployee(employee)
 		);
 
 		return NextResponse.json({
-			list: mappedFounders,
+			list: mappedEmployees,
 			count: employeeCount,
 		});
 	} catch (e: any) {

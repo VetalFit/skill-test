@@ -5,7 +5,13 @@ import styles from './AddCompany.module.css';
 import getFoundersList, { Founders } from '../../fetcher/getFoundersList';
 import { Founder } from '../../fetcher/getFounderById';
 
-export default function AddCompanyButton() {
+interface AddCompanyButtonProps {
+	updateCompanyList: () => void;
+}
+
+export default function AddCompanyButton({
+	updateCompanyList,
+}: AddCompanyButtonProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [name, setName] = useState('');
 	const [founderName, setFounderName] = useState('');
@@ -47,16 +53,19 @@ export default function AddCompanyButton() {
 
 	const handleSubmit = async () => {
 		try {
-			const response = await fetch('http://localhost:3000/api/company', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name,
-					founderId,
-				}),
-			});
+			const response = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/company`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name,
+						founderId,
+					}),
+				}
+			);
 
 			if (!response.ok) {
 				throw new Error('Failed to add company');
@@ -65,8 +74,7 @@ export default function AddCompanyButton() {
 			setIsModalOpen(false);
 			setName('');
 			setFounderName('');
-			window.location.reload();
-			// updateCompanyList();
+			updateCompanyList()
 		} catch (error) {
 			console.error('Error adding company');
 		}

@@ -5,7 +5,7 @@ const getEmployeeById = async (
 ): Promise<Employee | undefined> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/employee/${employeeId}`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/employee/${employeeId}`
 		);
 		const data = await response.json();
 		return data;

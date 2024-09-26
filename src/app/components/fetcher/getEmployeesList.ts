@@ -20,7 +20,7 @@ const getEmployeesListInCompany = async (
 ): Promise<Employees> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/company/${companyId}/employee`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/company/${companyId}/employee`
 		);
 		const data = await response.json();
 		return data;

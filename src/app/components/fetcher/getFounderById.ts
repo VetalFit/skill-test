@@ -9,7 +9,7 @@ const getFounderById = async (
 ): Promise<Founder | undefined> => {
 	try {
 		const response = await fetch(
-			`http://localhost:3000/api/founder/${founderId}`
+			`${process.env.NEXT_PUBLIC_API_URL}/api/founder/${founderId}`
 		);
 		const data = await response.json();
 		return data;

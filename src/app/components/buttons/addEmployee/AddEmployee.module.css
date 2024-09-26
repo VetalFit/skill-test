@@ -16,7 +16,6 @@
 .inputWrapper {
 	display: flex;
 	flex-direction: column;
-	max-height: 400px;
 }
 
 .input {
@@ -78,7 +77,8 @@
 	align-items: flex-start;
 	min-height: 50px;
 	max-height: 70px;
-	overflow: hidden;
+	overflow: auto;
+	min-height: 70px;
 }
 
 .titleTechnologies {

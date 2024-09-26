@@ -22,7 +22,6 @@ const DeleteCompanyButton = ({ companyId }: { companyId: string }) => {
 			}
 		} catch (error) {
 			console.error('Error:', error);
-			// alert('An error occurred while deleting the company.');
 		}
 	};
 
