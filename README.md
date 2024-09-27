@@ -53,12 +53,10 @@ This task where I created a simple CRUD interface that interacts with external A
 
 ```bash
     NEXT_PUBLIC_API_URL=http://localhost:3000
-    MONGODB_URI=mongodb://localhost:27017/your-database-name
+ 	MONGODB_URI=mongodb://localhost:27017/your-database-name // or ask me for database connection string
 ```
 
-4.  **Run the MongoDB Server: If you are running MongoDB locally, ensure that your MongoDB instance is running:**
-    `mongod`
-5.  **Run the Development Server:**
+4.  **Run the Development Server:**
     `npm run dev`
 
 Open your browser and navigate to http://localhost:3000.
