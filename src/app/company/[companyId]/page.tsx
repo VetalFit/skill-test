@@ -64,8 +64,6 @@ export default function Page({
 		return <LoadingSpinner />;
 	}
 
-	console.log({ searchParams });
-
 	return (
 		<div>
 			<div className={styles.wrapperTitle}>

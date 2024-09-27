@@ -1,7 +1,7 @@
 import { Employee } from './getEmployeesList';
 
 const getEmployeeById = async (
-	employeeId: string | undefined
+	employeeId: string
 ): Promise<Employee | undefined> => {
 	try {
 		const response = await fetch(
@@ -10,7 +10,7 @@ const getEmployeeById = async (
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.error('Error:', error);
+		console.error('No employeeId provided:', error);
 	}
 };
 

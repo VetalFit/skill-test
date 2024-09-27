@@ -5,7 +5,7 @@ export type Founder = {
 };
 
 const getFounderById = async (
-	founderId: string | undefined
+	founderId: string
 ): Promise<Founder | undefined> => {
 	try {
 		const response = await fetch(
@@ -14,7 +14,7 @@ const getFounderById = async (
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.error('Error:', error);
+		console.error('No founderId provided:', error);
 	}
 };
 

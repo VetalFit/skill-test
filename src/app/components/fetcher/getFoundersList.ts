@@ -5,7 +5,7 @@ export type Founders = {
 	count: number;
 };
 
-const getFoundersList = async (): Promise<Founders> => {
+const getFoundersList = async (): Promise<Founders | undefined> => {
 	try {
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_API_URL}/api/founder`
@@ -15,10 +15,6 @@ const getFoundersList = async (): Promise<Founders> => {
 	} catch (error) {
 		console.error('Error:', error);
 	}
-	return {
-		list: [],
-		count: 0,
-	};
 };
 
 export default getFoundersList;

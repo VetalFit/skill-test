@@ -30,6 +30,33 @@ export const paginatedSearch = async <T>(
 	return { list, count };
 };
 
+export const searchWithoutPagination = async <T>(
+	model: Model<T>,
+	findQuery: any,
+	searchField: string | null,
+	searchValue: string | null,
+	populateFields?: string[]
+) => {
+	const query: Record<string, any> = { ...findQuery };
+
+	if (searchField && searchValue) {
+		query[searchField] = new RegExp(searchValue, 'i');
+	}
+
+	let queryBuilder = model.find(query);
+
+	if (populateFields && populateFields.length > 0) {
+		populateFields.forEach((field) => {
+			queryBuilder = queryBuilder.populate(field);
+		});
+	}
+
+	const list = await queryBuilder;
+	const count = await model.countDocuments(query);
+
+	return { list, count };
+};
+
 export const paginatedEmployeeSearch = async <T>(
 	model: Model<T>,
 	searchValue: string | null,

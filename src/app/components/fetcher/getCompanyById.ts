@@ -1,7 +1,7 @@
 import { Company } from './searchCompanies';
 
 const getCompanyById = async (
-	companyId: string | undefined
+	companyId: string
 ): Promise<Company | undefined> => {
 	try {
 		const response = await fetch(
@@ -10,7 +10,7 @@ const getCompanyById = async (
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.error('Error:', error);
+		console.error('No companyId provided:', error);
 	}
 };
 

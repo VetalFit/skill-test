@@ -1,34 +1,29 @@
 import mongoose from 'mongoose';
 import dbConnect from '@/libs/mongoose';
 import Founder from '@/db/models/founder.model';
-import { paginatedSearch } from '@/db/models/tools/common';
 import { NextRequest, NextResponse } from 'next/server';
 import { mapFounder } from './helpers';
+import { searchWithoutPagination } from '@/db/models/tools/common';
 
 export async function GET(req: NextRequest) {
 	try {
 		await dbConnect();
 		const queryParams = req.nextUrl.searchParams;
 
-		const limit = queryParams.get('limit');
-		const offset = queryParams.get('offset');
 		const searchField = queryParams.get('searchField');
 		const searchValue = queryParams.get('searchValue');
 
-		const { list, count } = await paginatedSearch(
+		const { list, count } = await searchWithoutPagination(
 			Founder,
 			{},
 			searchField,
-			searchValue,
-			Number(limit ?? 10),
-			Number(offset ?? 0)
+			searchValue
 		);
 
 		const founders = list;
-		const founderCount = count;
 		const mappedFounders = founders.map((founder) => mapFounder(founder));
 
-		return NextResponse.json({ list: mappedFounders, count: founderCount });
+		return NextResponse.json({ list: mappedFounders, count });
 	} catch (e: any) {
 		console.error(e?.message);
 		return NextResponse.json({ error: e?.message }, { status: 500 });

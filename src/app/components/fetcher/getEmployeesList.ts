@@ -16,8 +16,8 @@ export type Employees = {
 };
 
 const getEmployeesListInCompany = async (
-	companyId: string | undefined
-): Promise<Employees> => {
+	companyId: string
+): Promise<Employees | undefined> => {
 	try {
 		const response = await fetch(
 			`${process.env.NEXT_PUBLIC_API_URL}/api/company/${companyId}/employee`
@@ -25,12 +25,8 @@ const getEmployeesListInCompany = async (
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		console.error('Error:', error);
+		console.error('No companyId provided:', error);
 	}
-	return {
-		list: [],
-		count: 0,
-	};
 };
 
 export default getEmployeesListInCompany;
