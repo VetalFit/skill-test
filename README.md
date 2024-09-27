@@ -41,18 +41,20 @@ This task where I created a simple CRUD interface that interacts with external A
 ### How to Start in Dev mode:
 
 1.  Clone repository:
-    ```git clone https://github.com/your-repository/skill-test
-    		cd skill-test
-    ```
+    `git clone https://github.com/your-repository/skill-test`
+    `cd skill-test`
 2.  Download npm packages:
     `npm i`
 3.  Set Up Environment Variables: Create a .env file in the root directory and add the following variables:
-    ```NEXT_PUBLIC_API_URL=http://localhost:3000
-    	MONGODB_URI=mongodb://localhost:27017/your-database-name
-    ```
+    `NEXT_PUBLIC_API_URL=http://localhost:3000`
+    `MONGODB_URI=mongodb://localhost:27017/your-database-name`
 4.  Run the MongoDB Server: If you are running MongoDB locally, ensure that your MongoDB instance is running:
     `mongod`
 5.  Run the Development Server:
     `npm run dev`
 
 Open your browser and navigate to http://localhost:3000.
+
+#### Hosting:
+
+host this project on Vercel https://skill-test-sigma.vercel.app/
