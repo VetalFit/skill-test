@@ -4,6 +4,7 @@ import styles from './ChangeEmployeeInfo.module.css';
 import Modal from '../../modal/Modal';
 import getEmployeeById from '../../fetcher/getEmployeeById';
 import ListTest from '../../technologiesLIst/TechnologiesList';
+import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
 
 export default function AddEmployeeButton({
 	companyId,
@@ -123,20 +124,26 @@ export default function AddEmployeeButton({
 					<div className={styles.titleTechnologies}>
 						technologies:
 					</div>
-					{technologies?.map((tech) => {
-						return (
-							<div
-								key={tech}
-								onClick={() =>
-									handleDelSelectedTechnologies(tech)
-								}
-								className={styles.technologyPill}
-							>
-								{tech}{' '}
-								<span className={styles.removeIcon}>✖</span>
-							</div>
-						);
-					})}
+					{firstName ? (
+						technologies?.map((tech) => {
+							return (
+								<div
+									key={tech}
+									onClick={() =>
+										handleDelSelectedTechnologies(tech)
+									}
+									className={styles.technologyPill}
+								>
+									{tech}{' '}
+									<span className={styles.removeIcon}>✖</span>
+								</div>
+							);
+						})
+					) : (
+						<div className={styles.spinnerOverlay}>
+							<LoadingSpinner />
+						</div>
+					)}
 				</div>
 				<ListTest handleSelect={handleSetSelectedTechnologies} />
 				<button className={styles.submitButton} onClick={handleSubmit}>

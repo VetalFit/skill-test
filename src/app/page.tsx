@@ -21,8 +21,20 @@ export default function Home({
 	const currentOffset = parseInt(searchParams.offset || '0', 10);
 	const [companies, setCompanies] = useState<Companies>({} as Companies);
 	const [totalPages, setTotalPages] = useState(0);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const fetchCompanies = async () => {
+		setIsLoading(true);
+		try {
+			await searchData();
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
+	const searchData = async () => {
 		try {
 			const data = await searchCompanies(
 				new URLSearchParams(searchParams)
@@ -38,13 +50,21 @@ export default function Home({
 		fetchCompanies();
 	}, [searchParams]);
 
+	if (isLoading) {
+		return (
+			<div className={styles.spinnerOverlay}>
+				<LoadingSpinner />
+			</div>
+		);
+	}
+
 	return (
 		<div className={styles.page}>
 			<main className={styles.main}>
 				<div className={styles.title}>Companies</div>
 				<div className={styles.buttonsContainer}>
 					<AddFounderButton />{' '}
-					<AddCompanyButton updateCompanyList={fetchCompanies} />
+					<AddCompanyButton updateCompanyList={searchData} />
 					<FoundersList />
 				</div>
 				<div className={styles.searchbarWrapper}>
@@ -58,9 +78,9 @@ export default function Home({
 					{companies.list ? (
 						<CompaniesCards companies={companies.list} />
 					) : (
-						<div className={styles.spinnerOverlay}>
-							<LoadingSpinner />
-						</div>
+						<p className={styles.employeesContainer}>
+							No employees found
+						</p>
 					)}
 				</div>
 

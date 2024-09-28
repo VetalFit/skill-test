@@ -63,6 +63,8 @@ export default function AddEmployeeButton({
 			setIsModalOpen(false);
 			setFirstName('');
 			setLastName('');
+			setPosition('');
+			setSelectedTechnologies([]);
 			onSuccess();
 		} catch (error) {
 			console.error('Error adding founder');

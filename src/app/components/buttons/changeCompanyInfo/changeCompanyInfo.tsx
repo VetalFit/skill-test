@@ -5,6 +5,7 @@ import styles from './changeCompanyInfo.module.css';
 import getFoundersList, { Founders } from '../../fetcher/getFoundersList';
 import { Founder } from '../../fetcher/getFounderById';
 import getCompanyById from '../../fetcher/getCompanyById';
+import LoadingSpinner from '../../loadingSpinner/LoadingSpinner';
 
 export default function ChangeCompanyInfo({
 	companyId,
@@ -110,6 +111,29 @@ export default function ChangeCompanyInfo({
 						required
 					/>
 				</div>
+				{founderId ? (
+					filteredFounders.length > 0 && (
+						<ul className={styles.dropdown}>
+							{filteredFounders.map((founder) => (
+								<li
+									key={founder.id}
+									className={styles.dropdownItem}
+									onClick={() => {
+										setFounderName(founder.firstName);
+										setFounderId(founder.id);
+										setFilteredFounders([]);
+									}}
+								>
+									{founder.firstName} {founder.lastName}
+								</li>
+							))}
+						</ul>
+					)
+				) : (
+					<div className={styles.spinnerOverlay}>
+						<LoadingSpinner />
+					</div>
+				)}
 				{filteredFounders.length > 0 && (
 					<ul className={styles.dropdown}>
 						{filteredFounders.map((founder) => (
