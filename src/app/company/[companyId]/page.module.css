@@ -14,7 +14,7 @@
 	font-size: 18px;
 	font-weight: 600;
 	text-decoration: underline;
-	margin-bottom: 5px;
+	margin-bottom: var(--margin-smallest);
 }
 
 .employeesContainer {
@@ -27,10 +27,10 @@
 }
 
 .employeeCard {
-	background-color: rgb(52, 52, 52);
-	border: 1px solid #ccc;
-	border-radius: 12px;
-	padding: 10px;
+	background-color: var(--silver-plate--color);
+	border: var(--border-light);
+	border-radius: var(--border-radius-large);
+	padding: var(--padding-small);
 	width: 500px;
 	display: flex;
 	justify-content: space-between;
@@ -45,7 +45,7 @@
 
 .employeeCard p {
 	color: #747474;
-	font-size: 16px;
+	font-size: var(--font-size-small);
 }
 
 .buttonsContainer {
@@ -53,7 +53,7 @@
 	justify-content: center;
 	align-items: flex-end;
 	gap: 10px;
-	margin-bottom: 20px;
+	margin-bottom: var(--margin-large);
 }
 
 .searchbarWrapper {
@@ -61,23 +61,35 @@
 	justify-content: center;
 	align-items: center;
 	margin: 0 auto;
-	margin-bottom: 20px;
+	margin-bottom: var(--margin-large);
 }
 
 .technologyPill {
 	background-color: rgb(77, 0, 84);
-	border-radius: 25px;
+	border-radius: var(--border-radius-xlarge);
 	padding: 4px 8px;
-	font-size: 14px;
+	font-size: var(--font-size-smallest);
 	display: inline-block;
 	align-items: center;
 	cursor: pointer;
 	transition: background-color 0.3s;
-	margin-top: 5px;
-	margin-right: 5px;
+	margin-top: var(--margin-smallest);
+	margin-right: var(--margin-smallest);
 }
 
 .btnWrapper {
 	display: flex;
 	flex-direction: column;
+}
+
+.spinnerOverlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
 }

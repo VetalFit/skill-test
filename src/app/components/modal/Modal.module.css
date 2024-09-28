@@ -20,8 +20,8 @@
 }
 
 .modalContent {
-	background-color: rgb(52, 52, 52);
-	padding: 20px;
+	background-color: var(--silver-plate--color);
+	padding: var(--padding-large);
 	border-radius: 8px;
 	width: 400px;
 	text-align: center;

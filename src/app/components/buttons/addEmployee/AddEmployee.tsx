@@ -86,21 +86,18 @@ export default function AddEmployeeButton({
 					<input
 						type="text"
 						value={firstName}
-						className={styles.input}
 						onChange={(e) => setFirstName(e.target.value)}
 						placeholder="Enter FirstName"
 					/>
 					<input
 						type="text"
 						value={lastName}
-						className={styles.input}
 						onChange={(e) => setLastName(e.target.value)}
 						placeholder="Enter LastName"
 					/>
 					<input
 						type="text"
 						value={position}
-						className={styles.input}
 						onChange={(e) => setPosition(e.target.value)}
 						placeholder="Enter Position"
 					/>

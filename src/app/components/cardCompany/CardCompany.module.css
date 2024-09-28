@@ -1,21 +1,21 @@
 .card {
-	border: 1px solid #ccc;
+	border: var(--border-light);
 	border-radius: 18px;
 	padding: 12px;
 	margin: 10px 0;
 	position: relative;
-	background-color: rgb(52, 52, 52);
+	background-color: var(--silver-plate--color);
 }
 
 .cardLink {
 	display: inline-block;
-	margin-right: 5px;
+	margin-right: var(--margin-smallest);
 	color: white;
 	text-decoration: none;
 }
 
 .cardTitle {
-	font-size: 20px;
+	font-size: var(--font-size-medium);
 	font-weight: 600;
 	text-decoration: underline;
 }
@@ -25,11 +25,11 @@
 }
 
 .cardFounder {
-	margin-left: 5px;
+	margin-left: var(--margin-smallest);
 }
 
 .founder {
-	font-size: 14px;
+	font-size: var(--font-size-smallest);
 	font-weight: 400;
 	color: #ccc;
 	text-decoration: underline;

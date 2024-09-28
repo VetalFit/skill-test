@@ -1,29 +1,29 @@
 .submitButton {
-	background-color: #3d8d00;
+	background-color: var(--submit--button);
 	color: white;
 	border: none;
 	padding: 10px 20px;
-	font-size: 16px;
-	border-radius: 5px;
+	font-size: var(--font-size-small);
+	border-radius: var(--border-radius-small);
 	cursor: pointer;
-	margin-top: 15px;
+	margin-top: var(--margin-medium);
 }
 
 .submitButton:hover {
-	background-color: #2f6d00;
+	background-color: var(--submit--button--hover);
 }
 
 .founderCard {
 	background-color: #b4b4b4;
 	border: 1px solid #dee2e6;
-	border-radius: 10px;
-	padding: 15px;
+	border-radius: var(--border-radius-medium);
+	padding: var(--padding-medium);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	margin-top: 5px;
+	margin-top: var(--margin-smallest);
 }
 
 .founderName {
-	font-size: 16px;
+	font-size: var(--font-size-small);
 	font-weight: bold;
 	color: #343a40;
 }
@@ -32,7 +32,7 @@
 	text-align: center;
 	color: #dc3545;
 	font-weight: bold;
-	padding: 20px;
+	padding: var(--padding-large);
 }
 
 .results {

@@ -3,67 +3,47 @@
 	flex-direction: column;
 }
 
-.input {
-	width: 100%;
-	margin-top: 10px;
-	margin-left: 5px;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
 .inputWrapper {
 	display: flex;
 	flex-direction: column;
 }
 
-.input {
-	width: 100%;
-	margin-top: 10px;
-	margin-left: 5px;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
 .submitButton {
 	padding: 10px 20px;
-	background-color: #007bff;
+	background-color: var(--add-button-color);
 	color: white;
 	border: none;
-	border-radius: 5px;
+	border-radius: var(--border-radius-small);
 	cursor: pointer;
-	font-size: 16px;
-	margin-top: 15px;
+	font-size: var(--font-size-small);
+	margin-top: var(--margin-medium);
 }
 
 .submitButton:hover {
-	background-color: #0056b3;
+	background-color: var(--add-button-color-hover);
 }
 
 .dropdown {
 	position: absolute;
-	background-color: rgb(52, 52, 52);
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	background-color: var(--silver-plate--color);
+	border: var(--border-light);
+	border-radius: var(--border-radius-small);
 	max-height: 200px;
 	overflow-y: auto;
 	z-index: 1000;
 	padding: 0;
 	list-style-type: none;
-	margin-left: 5px;
+	margin-left: var(--padding-smaller);
 }
 
 .dropdownItem {
-	padding: 10px;
+	padding: var(--padding-small);
 	cursor: pointer;
-	border-bottom: 1px solid #eee;
+	border-bottom: var(--border-light-silver);
 }
 
 .dropdownItem:hover {
-	background-color: #1d1d1d;
+	background-color: var(--silver-plate--color--hover);
 }
 
 .dropdownItem:last-child {
@@ -85,8 +65,8 @@
 	display: flex;
 	justify-content: start;
 	align-items: center;
-	margin-top: 10px;
-	margin-right: 5px;
+	margin-top: var(--margin-small);
+	margin-right: var(--margin-smallest);
 }
 
 .tech {
@@ -95,14 +75,14 @@
 
 .technologyPill {
 	background-color: rgb(77, 0, 84);
-	border-radius: 25px;
+	border-radius: var(--border-radius-xlarge);
 	padding: 4px 8px;
-	font-size: 14px;
+	font-size: var(--font-size-smallest);
 	display: inline-block;
 	align-items: center;
 	cursor: pointer;
 	transition: background-color 0.3s;
-	margin-top: 5px;
+	margin-top: var(--margin-smallest);
 }
 
 .technologyPill:hover {

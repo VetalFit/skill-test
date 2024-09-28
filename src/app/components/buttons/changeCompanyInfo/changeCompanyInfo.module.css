@@ -7,51 +7,41 @@
 	flex-direction: column;
 }
 
-.input {
-	width: 100%;
-	margin-top: 10px;
-	margin-left: 5px;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
 .changeButton {
 	padding: 10px 20px;
-	background-color: #a88401;
+	background-color: var(--change-button-color);
 	color: white;
 	border: none;
-	border-radius: 5px;
+	border-radius: var(--border-radius-small);
 	cursor: pointer;
-	font-size: 16px;
+	font-size: var(--font-size-small);
 	margin-top: 15px;
 }
 
 .changeButton:hover {
-	background-color: #665001;
+	background-color: var(--change-button-color-hover);
 }
 
 .dropdown {
 	position: absolute;
-	background-color: rgb(52, 52, 52);
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	background-color: var(--silver-plate--color);
+	border: var(--border-light);
+	border-radius: var(--border-radius-small);
 	max-height: 200px;
 	overflow-y: auto;
-	z-index: 1000;
+	z-index: 100;
 	padding: 0;
 	list-style-type: none;
 }
 
 .dropdownItem {
-	padding: 10px;
+	padding: var(--padding-small);
 	cursor: pointer;
-	border-bottom: 1px solid #eee;
+	border-bottom: var(--border-light-silver);
 }
 
 .dropdownItem:hover {
-	background-color: #1d1d1d;
+	background-color: var(--silver-plate--color--hover);
 }
 
 .dropdownItem:last-child {

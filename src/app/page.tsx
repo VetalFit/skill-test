@@ -21,10 +21,8 @@ export default function Home({
 	const currentOffset = parseInt(searchParams.offset || '0', 10);
 	const [companies, setCompanies] = useState<Companies>({} as Companies);
 	const [totalPages, setTotalPages] = useState(0);
-	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const fetchCompanies = async () => {
-		setIsLoading(true);
 		try {
 			const data = await searchCompanies(
 				new URLSearchParams(searchParams)
@@ -33,18 +31,12 @@ export default function Home({
 			setTotalPages(Math.ceil(data.count / itemsPerPage));
 		} catch (error) {
 			console.error('Error fetching data:', error);
-		} finally {
-			setIsLoading(false);
 		}
 	};
 
 	useEffect(() => {
 		fetchCompanies();
 	}, [searchParams]);
-
-	if (isLoading) {
-		return <LoadingSpinner />;
-	}
 
 	return (
 		<div className={styles.page}>
@@ -66,7 +58,9 @@ export default function Home({
 					{companies.list ? (
 						<CompaniesCards companies={companies.list} />
 					) : (
-						<p>Nothing found</p>
+						<div className={styles.spinnerOverlay}>
+							<LoadingSpinner />
+						</div>
 					)}
 				</div>
 

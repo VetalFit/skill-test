@@ -60,7 +60,6 @@ const TechnologiesList: React.FC<ListProps> = (
 			<input
 				type="text"
 				value={searchValue}
-				className={styles.input}
 				onChange={(e) => handleSearch(e.target.value)}
 				placeholder="Enter technology"
 			/>

@@ -1,15 +1,15 @@
 .deleteButton {
-	background-color: #ff4d4d;
+	background-color: var(--delete--button-color);
 	color: white;
 	padding: 10px 20px;
 	border: none;
-	border-radius: 5px;
+	border-radius: var(--border-radius-small);
 	cursor: pointer;
-	font-size: 14px;
+	font-size: var(--font-size-smallest);
 	min-width: 147px;
 	max-height: 36px;
 }
 
 .deleteButton:hover {
-	background-color: #ff0000;
+	background-color: var(--delete--button-color--hover);
 }

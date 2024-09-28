@@ -80,7 +80,11 @@ const FoundersList: React.FC = (): JSX.Element => {
 	};
 
 	if (isLoading) {
-		return <LoadingSpinner />;
+		return (
+			<div className={styles.spinnerWrapper}>
+				<LoadingSpinner />
+			</div>
+		);
 	}
 
 	return (

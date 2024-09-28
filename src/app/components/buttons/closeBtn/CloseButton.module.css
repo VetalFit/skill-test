@@ -10,5 +10,5 @@
 }
 
 .closeButton:hover {
-	color: #ff0000;
+	color: var(--delete--button-color--hover);
 }

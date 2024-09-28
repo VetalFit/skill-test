@@ -9,7 +9,7 @@ import DeleteEmployeeButton from '@/app/components/buttons/deleteEmployeeBtn/Del
 import AddEmployeeButton from '@/app/components/buttons/addEmployee/AddEmployee';
 import Link from 'next/link';
 import ChangeCompanyInfo from '@/app/components/buttons/changeCompanyInfo/changeCompanyInfo';
-import ChangeEmployeeInfo from '@/app/components/changeEmployeeInfo/ChangeEmployeeInfo';
+import ChangeEmployeeInfo from '@/app/components/buttons/changeEmployeeInfo/ChangeEmployeeInfo';
 import SearchParamsBlock from '@/app/components/searchParamsBlock/SearchParamsBlock';
 import Pagination from '@/app/components/pagination/Pagination';
 import searchEmployee from '@/app/components/fetcher/searchEmployees';
@@ -61,7 +61,11 @@ export default function Page({
 	}, [searchParams]);
 
 	if (isLoading) {
-		return <LoadingSpinner />;
+		return (
+			<div className={styles.spinnerOverlay}>
+				<LoadingSpinner />
+			</div>
+		);
 	}
 
 	return (

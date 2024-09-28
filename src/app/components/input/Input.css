@@ -1,27 +1,28 @@
 .input-wrapper {
 	position: relative;
-	margin-bottom: 20px;
+	margin-bottom: var(--margin-large);
 	width: 100%;
 	display: flex;
 }
 
 .input-custom {
 	border: none;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+	border: var(--border-light);
+	border-radius: var(--border-radius-small);
 	padding: 8px;
-	background-color: gray;
+	background-color: var(--silver-plate--color);
 	outline: none;
-	color: black;
-	font-size: 16px;
+	color: white;
+	font-size: var(--font-size-small);
 	width: 100%;
+	margin: 0;
 }
 
 .input-label {
 	position: absolute;
 	top: 8px;
 	left: 8px;
-	font-size: 16px;
+	font-size: var(--font-size-small);
 	color: white;
 	transition: all 0.2s ease;
 	pointer-events: none;

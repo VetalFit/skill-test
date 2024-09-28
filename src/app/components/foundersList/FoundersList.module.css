@@ -2,14 +2,10 @@
 	width: 100%;
 }
 
-.input {
-	width: 100%;
-	margin-top: 10px;
-	margin-left: 5px;
-	padding: 10px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+.spinnerWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .listItem {
@@ -17,21 +13,21 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 20px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: var(--border-light-silver);
 }
 
 .deleteButton {
-	background-color: red;
+	background-color: var(--delete--button-color);
 	color: white;
 	border: none;
 	cursor: pointer;
-	font-size: 16px;
+	font-size: var(--font-size-small);
 	line-height: 1;
 	padding: 0 10px;
 }
 
 .deleteButton:hover {
-	background-color: darkred;
+	background-color: var(--delete--button-color--hover);
 }
 
 .results {

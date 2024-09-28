@@ -50,14 +50,12 @@ export default function AddFounderButton() {
 					<input
 						type="text"
 						value={firstName}
-						className={styles.input}
 						onChange={(e) => setFirstName(e.target.value)}
 						placeholder="Enter FirstName"
 					/>
 					<input
 						type="text"
 						value={lastName}
-						className={styles.input}
 						onChange={(e) => setLastName(e.target.value)}
 						placeholder="Enter LastName"
 					/>

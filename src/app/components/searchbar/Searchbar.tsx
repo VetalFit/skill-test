@@ -54,6 +54,13 @@ function Searchbar({
 					value={input}
 					onChange={(event) => setInput(event.target.value)}
 					maxLength={255}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter') {
+							handleSubmit(
+								e as unknown as FormEvent<HTMLFormElement>
+							);
+						}
+					}}
 				/>
 				{input.length ? (
 					<button

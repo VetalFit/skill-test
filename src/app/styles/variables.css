@@ -1,0 +1,38 @@
+:root {
+	--change-button-color: #a88401;
+	--change-button-color-hover: #665001;
+
+	--silver-plate--color: rgb(52, 52, 52);
+	--silver-plate--color--hover: #1d1d1d;
+
+	--add-button-color: #007bff;
+	--add-button-color-hover: #0056b3;
+
+	--delete--button-color: #ff2e2e;
+	--delete--button-color--hover: #ff0000;
+
+	--submit--button: #3d8d00;
+	--submit--button--hover: #2f6d00;
+
+	--border-radius-small: 5px;
+	--border-radius-medium: 10px;
+	--border-radius-large: 12px;
+	--border-radius-xlarge: 25px;
+
+	--font-size-smallest: 14px;
+	--font-size-small: 16px;
+	--font-size-medium: 20px;
+
+	--padding-smaller: 5px;
+	--padding-small: 10px;
+	--padding-medium: 15px;
+	--padding-large: 20px;
+
+	--margin-smallest: 5px;
+	--margin-small: 10px;
+	--margin-medium: 15px;
+	--margin-large: 20px;
+
+	--border-light: 1px solid #ccc;
+	--border-light-silver: 1px solid #ddd;
+}

@@ -97,7 +97,6 @@ export default function AddCompanyButton({
 					<input
 						type="text"
 						value={name}
-						className={styles.input}
 						onChange={(e) => setName(e.target.value)}
 						placeholder="Enter name"
 						required
@@ -105,7 +104,6 @@ export default function AddCompanyButton({
 					<input
 						type="text"
 						value={founderName}
-						className={styles.input}
 						onChange={handleInputChange}
 						placeholder="Enter founder"
 						required
