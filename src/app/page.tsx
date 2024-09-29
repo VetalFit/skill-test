@@ -48,6 +48,10 @@ export default function Home({
 
 	useEffect(() => {
 		fetchCompanies();
+	}, []);
+
+	useEffect(() => {
+		searchData();
 	}, [searchParams]);
 
 	if (isLoading) {
